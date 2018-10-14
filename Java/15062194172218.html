@@ -1,0 +1,615 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  springmvc笔记(18)-json数据交互 - 
+  
+  </title>
+ <meta name="description" content="">
+ <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+    <script src="asset/highlightjs/highlight.pack.js"></script>
+    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+<div id="header">
+    <h1><a href="index.html"></a></h1>
+</div>
+
+</nav>
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; </span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+      <li><a href="index.html">Home</a></li>
+      
+        <li class="divider"></li>
+        <li><label>javaSE</label></li>
+
+          
+            <li><a title="java基础巩固笔记(4)-代理" href="15062614477154.html">java基础巩固笔记(4)-代理</a></li>
+          
+            <li><a title="java基础巩固笔记(3)-类加载器" href="15062185158014.html">java基础巩固笔记(3)-类加载器</a></li>
+          
+            <li><a title="java基础巩固笔记(2)-泛型" href="15060875600181.html">java基础巩固笔记(2)-泛型</a></li>
+          
+            <li><a title="java基础巩固笔记(1)-反射" href="15060870386275.html">java基础巩固笔记(1)-反射</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>javaWeb</label></li>
+
+          
+            <li><a title="javaweb入门笔记(1)-Tomcat" href="15060873277976.html">javaweb入门笔记(1)-Tomcat</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>springMVC</label></li>
+
+          
+            <li><a title="springmvc笔记（19）-GET请求乱码深入剖析" href="15066056563587.html">springmvc笔记（19）-GET请求乱码深入剖析</a></li>
+          
+            <li><a title="springmvc笔记(18)-json数据交互" href="15062194172218.html">springmvc笔记(18)-json数据交互</a></li>
+          
+
+      
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+        <section id="main-content" role="main" class="scroll-container">
+
+          <div class="row">
+            <div class="large-3 medium-3 columns">
+              <div class="hide-for-small">
+                <div class="sidebar">
+                <nav>
+                  <ul id="side-nav" class="side-nav">
+
+                    
+                      <li class="side-title"><span>javaSE</span></li>
+                        
+                          <li><a title="java基础巩固笔记(4)-代理" href="15062614477154.html">java基础巩固笔记(4)-代理</a></li>
+                        
+                          <li><a title="java基础巩固笔记(3)-类加载器" href="15062185158014.html">java基础巩固笔记(3)-类加载器</a></li>
+                        
+                          <li><a title="java基础巩固笔记(2)-泛型" href="15060875600181.html">java基础巩固笔记(2)-泛型</a></li>
+                        
+                          <li><a title="java基础巩固笔记(1)-反射" href="15060870386275.html">java基础巩固笔记(1)-反射</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>javaWeb</span></li>
+                        
+                          <li><a title="javaweb入门笔记(1)-Tomcat" href="15060873277976.html">javaweb入门笔记(1)-Tomcat</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>springMVC</span></li>
+                        
+                          <li><a title="springmvc笔记（19）-GET请求乱码深入剖析" href="15066056563587.html">springmvc笔记（19）-GET请求乱码深入剖析</a></li>
+                        
+                          <li><a title="springmvc笔记(18)-json数据交互" href="15062194172218.html">springmvc笔记(18)-json数据交互</a></li>
+                        
+
+                    
+                  </ul>
+                </nav>
+                </div>
+              </div>
+            </div>
+            <div class="large-9 medium-9 columns">
+
+ <div class="markdown-body">
+<h1>springmvc笔记(18)-json数据交互</h1>
+
+<p>标签：** springmvc</p>
+
+<hr/>
+
+<p><strong>Contents</strong></p>
+
+<ul>
+<li><a href="#springmvc%E8%BF%9B%E8%A1%8Cjson%E4%BA%A4%E4%BA%92">springmvc进行json交互</a></li>
+<li><a href="#%E7%8E%AF%E5%A2%83%E5%87%86%E5%A4%87">环境准备</a>
+
+<ul>
+<li><a href="#%E6%B7%BB%E5%8A%A0json%E8%BD%AC%E6%8D%A2%E7%9A%84%E4%BE%9D%E8%B5%96">添加json转换的依赖</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AEjson%E8%BD%AC%E6%8D%A2%E5%99%A8">配置json转换器</a></li>
+</ul></li>
+<li><a href="#json%E4%BA%A4%E4%BA%92%E6%B5%8B%E8%AF%95">json交互测试</a>
+
+<ul>
+<li><a href="#%E8%BE%93%E5%85%A5json%E4%B8%B2%EF%BC%8C%E8%BE%93%E5%87%BA%E6%98%AFjson%E4%B8%B2">输入json串，输出是json串</a></li>
+<li><a href="#%E8%BE%93%E5%85%A5keyvalue%EF%BC%8C%E8%BE%93%E5%87%BA%E6%98%AFjson%E4%B8%B2">输入key/value，输出是json串</a></li>
+</ul></li>
+</ul>
+
+<hr/>
+
+<p>本文主要介绍如何在springmvc中进行json数据的交互，先是环境准备和配置，然后分别展示了“输入json串，输出是json串”和“输入key/value，输出是json串”两种情况下的交互</p>
+
+<h2 id="toc_0">springmvc进行json交互</h2>
+
+<p>json数据格式在接口调用中、html页面中较常用，json格式比较简单，解析还比较方便。</p>
+
+<p>比如：webservice接口，传输json数据.</p>
+
+<p><img src="http://7xph6d.com1.z0.glb.clouddn.com/springmvc_json%E4%BA%A4%E4%BA%92.png" alt="json交互"/></p>
+
+<ul>
+<li>请求json、输出json，要求请求的是json串，所以在前端页面中需要将请求的内容转成json，不太方便。</li>
+<li>请求key/value、输出json。此方法比较常用。</li>
+</ul>
+
+<h2 id="toc_1">环境准备</h2>
+
+<h3 id="toc_2">添加json转换的依赖</h3>
+
+<p>最开始我少了<code>jackson-databind</code>依赖，程序各种报错。</p>
+
+<pre><code class="language-xml">
+&lt;!-- json 转换--&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;
+    &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;
+    &lt;version&gt;2.7.2&lt;/version&gt;
+&lt;/dependency&gt;
+
+&lt;dependency&gt;
+    &lt;groupId&gt;org.codehaus.jackson&lt;/groupId&gt;
+    &lt;artifactId&gt;jackson-mapper-asl&lt;/artifactId&gt;
+    &lt;version&gt;1.9.13&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre>
+
+<p>查看依赖树</p>
+
+<pre><code>[INFO] +- com.fasterxml.jackson.core:jackson-databind:jar:2.7.2:compile
+[INFO] |  +- com.fasterxml.jackson.core:jackson-annotations:jar:2.7.0:compile
+[INFO] |  \- com.fasterxml.jackson.core:jackson-core:jar:2.7.2:compile
+[INFO] \- org.codehaus.jackson:jackson-mapper-asl:jar:1.9.13:compile
+[INFO]    \- org.codehaus.jackson:jackson-core-asl:jar:1.9.13:compile
+</code></pre>
+
+<h3 id="toc_3">配置json转换器</h3>
+
+<p>在注解适配器中加入<code>messageConverters</code></p>
+
+<pre><code class="language-xml">
+&lt;!--注解适配器 --&gt;
+&lt;bean class=&quot;org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter&quot;&gt;
+    &lt;property name=&quot;messageConverters&quot;&gt;
+    &lt;list&gt;
+    &lt;bean class=&quot;org.springframework.http.converter.json.MappingJacksonHttpMessageConverter&quot;&gt;&lt;/bean&gt;
+    &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<p><strong>注意：如果使用<code>&lt;mvc:annotation-driven /&gt;</code>则不用定义上边的内容。</strong></p>
+
+<h2 id="toc_4">json交互测试</h2>
+
+<p>显示两个按钮分别测试</p>
+
+<ul>
+<li>jsp页面</li>
+</ul>
+
+<pre><code class="language-jsp">&lt;%--
+  Created by IntelliJ IDEA.
+  User: brian
+  Date: 2016/3/7
+  Time: 20:49
+  To change this template use File | Settings | File Templates.
+--%&gt;
+&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=UTF-8&quot;&gt;
+    &lt;title&gt;json交互测试&lt;/title&gt;
+    &lt;script type=&quot;text/javascript&quot; src=&quot;${pageContext.request.contextPath }/js/jquery-1.4.4.min.js&quot;&gt;&lt;/script&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+        //请求json，输出是json
+        function requestJson(){     省略    }
+        //请求key/value，输出是json
+        function responseJson(){    省略    }
+    &lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;input type=&quot;button&quot; onclick=&quot;requestJson()&quot; value=&quot;请求json，输出是json&quot;/&gt;
+&lt;input type=&quot;button&quot; onclick=&quot;responseJson()&quot; value=&quot;请求key/value，输出是json&quot;/&gt;
+&lt;/body&gt;
+
+</code></pre>
+
+<ul>
+<li>controller</li>
+</ul>
+
+<pre><code class="language-java">@Controller
+public class JsonTest {
+    省略
+}
+</code></pre>
+
+<ul>
+<li>测试结果</li>
+</ul>
+
+<h3 id="toc_5">输入json串，输出是json串</h3>
+
+<p>使用jquery的ajax提交json串，对输出的json结果进行解析。</p>
+
+<ul>
+<li>jsp页面</li>
+</ul>
+
+<pre><code class="language-jsp">//请求json，输出是json
+function requestJson(){
+
+    $.ajax({
+        type:&#39;post&#39;,
+        url:&#39;${pageContext.request.contextPath }/requestJson.action&#39;,
+        contentType:&#39;application/json;charset=utf-8&#39;,
+        //数据格式是json串，商品信息
+        data:&#39;{&quot;name&quot;:&quot;手机&quot;,&quot;price&quot;:999}&#39;,
+        success:function(data){//返回json结果
+            alert(data);
+        }
+
+    });
+
+}
+</code></pre>
+
+<ul>
+<li>controller</li>
+</ul>
+
+<pre><code class="language-java"> //请求json串(商品信息)，输出json(商品信息)
+//@RequestBody将请求的商品信息的json串转成itemsCustom对象
+//@ResponseBody将itemsCustom转成json输出
+@RequestMapping(&quot;/requestJson&quot;)
+public @ResponseBody ItemsCustom requestJson(@RequestBody ItemsCustom itemsCustom){
+
+    //@ResponseBody将itemsCustom转成json输出
+    return itemsCustom;
+}
+</code></pre>
+
+<ul>
+<li>测试结果</li>
+</ul>
+
+<p><img src="http://7xph6d.com1.z0.glb.clouddn.com/springmvc_json-request-json-1.png" alt="请求json，返回json"/></p>
+
+<p>可以看到，request和response的HTTP头的Content-Type都是<code>application/json;charset=utf-8</code></p>
+
+<p><img src="http://7xph6d.com1.z0.glb.clouddn.com/springmvc_json-request-json-2.png" alt="请求json，返回json,response的body"/></p>
+
+<h3 id="toc_6">输入key/value，输出是json串</h3>
+
+<p>使用jquery的ajax提交key/value串，对输出的json结果进行解析</p>
+
+<ul>
+<li>jsp页面</li>
+</ul>
+
+<pre><code class="language-jsp">//请求key/value，输出是json
+function responseJson(){
+
+    $.ajax({
+        type:&#39;post&#39;,
+        url:&#39;${pageContext.request.contextPath }/responseJson.action&#39;,
+        //请求是key/value这里不需要指定contentType，因为默认就 是key/value类型
+        //contentType:&#39;application/json;charset=utf-8&#39;,
+        //数据格式是json串，商品信息
+        data:&#39;name=手机&amp;price=999&#39;,
+        success:function(data){//返回json结果
+            alert(data.name);
+        }
+
+    });
+
+}
+</code></pre>
+
+<ul>
+<li>controller</li>
+</ul>
+
+<pre><code class="language-java"> //请求key/value，输出json
+@RequestMapping(&quot;/responseJson&quot;)
+public @ResponseBody ItemsCustom responseJson(ItemsCustom itemsCustom){
+
+    //@ResponseBody将itemsCustom转成json输出
+    return itemsCustom;
+}
+</code></pre>
+
+<ul>
+<li>测试结果</li>
+</ul>
+
+<p><img src="http://7xph6d.com1.z0.glb.clouddn.com/springmvc_json-request-keyvalue-1.png" alt="请求key/value,返回json"/></p>
+
+<p>可以看到，key/value键值对的默认Content-Type是<code>application/x-www-form-urlencoded</code>,同时，我们收到了响应“手机”</p>
+
+<h2 id="toc_7">扩展内容：</h2>
+
+<h3 id="toc_8">1.把数据放到url中传递</h3>
+
+<ul>
+<li>js：</li>
+</ul>
+
+<pre><code class="language-jsp">var id = $(&quot;#id&quot;).val();
+$.ajax({
+        type: &quot;POST&quot;,
+        url: &quot;/IFTree/people/getPeopleById/&quot;+id,//参数放在url中
+        success:function(data){ alert(data);
+        },
+        error:function(xhr, textStatus, errorThrown) {
+        }
+        });
+</code></pre>
+
+<ul>
+<li>后台</li>
+</ul>
+
+<pre><code class="language-java">RequestMapping(value = &quot;getPeopleById/{id}&quot;)
+@ResponseBody
+    public Map&lt;String, Object&gt; getPeopleById(@PathVariable(&quot;id&quot;) int id) {
+        //@PathVariable(&quot;id&quot;) 如果参数名与url定义的一样注解可以不用定义(&quot;id&quot;)
+        System.out.println(id);
+        Map&lt;String, Object&gt; map = new HashMap&lt;String, Object&gt;();
+        return map;
+    }
+}
+</code></pre>
+
+<h3 id="toc_9">2.把数据放到data中</h3>
+
+<ul>
+<li>js：</li>
+</ul>
+
+<pre><code class="language-jsp">    var id = $(&quot;#id&quot;).val();
+        $.ajax({
+            type: &quot;POST&quot;,
+            url: &quot;/IFTree/people/getPeopleById&quot;,
+            data: {id:id},
+            success:function(data){ alert(data.result);
+            },
+            error:function(xhr, textStatus, errorThrown) {
+            }
+        });
+</code></pre>
+
+<h3 id="toc_10">3.后台（两个方式）：json&lt;-&gt;json ,key/val&lt;-&gt;json</h3>
+
+<pre><code class="language-java">@RequestMapping(value = &quot;getPeopleById&quot;)
+@ResponseBody
+public Map&lt;String, Object&gt; getPeopleById(HttpServletRequest request,HttpServletResponse response) {
+    int id = Integer.valueOf(request.getParameter(&quot;id&quot;));
+    Map&lt;String, Object&gt; map = new HashMap&lt;String, Object&gt;();
+    return map;
+}
+@RequestMapping(value = &quot;getPeopleById&quot;)
+@ResponseBody
+public Map&lt;String, Object&gt; getPeopleById(HttpServletRequest request,HttpServletResponse response) {
+    int id = Integer.valueOf(request.getParameter(&quot;id&quot;));
+    // 这里得到的都是字符串得转换成你需要的类型
+    Map&lt;String, Object&gt; map = new HashMap&lt;String, Object&gt;();
+    return map;
+}
+</code></pre>
+
+<ul>
+<li>以json传输（就是开头说的情况）</li>
+</ul>
+
+<p>js（包含一些常见的ajax参数解释）：</p>
+
+<pre><code class="language-jsp">    var id = $(&quot;#id&quot;).val();
+        $.ajax({
+            type: &quot;POST&quot;,//请求类型
+            timeout：10000,    //设置请求超时时间（毫秒）
+            async:ture,//是否为异步请求
+            cache:false,//是否从浏览器缓存中加载请求信息。
+            url: &quot;/IFTree/people/getPeopleById&quot;,
+            contentType: &quot;application/json;charset=UTF-8&quot;,//提交的数据类型
+            data: JSON.stringify({id:id}),//这里是把json转化为字符串形式
+            dataType: &quot;json&quot;,//返回的数据类型
+            success:function(data){
+                $(&quot;#name&quot;).val(data.result.name);
+            },
+            error:function(xhr, textStatus, errorThrown) {
+            }
+        });
+    });
+</code></pre>
+
+<p>后台：</p>
+
+<pre><code class="language-java">@RequestMapping(value = &quot;getPeopleById&quot;, produces = &quot;application/json&quot;)
+@ResponseBody
+public Map&lt;String, Object&gt; getPeopleById(@RequestBody Map&lt;String, Object&gt; body){
+    System.out.println(&quot;&quot;+body.get(&quot;id&quot;));
+    People people = peopleService.getPeopleById(Integer.valueOf((String)body.get(&quot;id&quot;)));
+    Map&lt;String, Object&gt; map = new HashMap&lt;String, Object&gt;();
+    map.put(&quot;result&quot;, people);
+    return map;
+}
+</code></pre>
+
+<p>详解：</p>
+
+<p>@RequestBody
+该注解首先读取request请求的正文数据，然后使用默认配置的HttpMessageConverter进行解析，把数据绑定要对象上面，然后再把对象绑定到controllor中的参数上。
+@ResponseBody
+该注解也是一样的用于将Controller的方法返回的对象，通过的HttpMessageConverter转换为指定格式后，写入到Response对象的body数据区。</p>
+
+<p>Srping mvc .xml(配置转换器)</p>
+
+<pre><code class="language-xml"> &lt;!-- spring MVC提供的适配器 spring默认加载 (如果不修改默认加载的4类转换器，该bean可不配置)--&gt;
+ &lt;bean class=&quot;org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter&quot;&gt;
+    &lt;property name=&quot;messageConverters&quot;&gt;
+        &lt;!-- 该适配器默认加载以下4类转换器--&gt;
+        &lt;list&gt;
+            &lt;bean class=&quot;org.springframework.http.converter.BufferedImageHttpMessageConverter&quot; /&gt;
+            &lt;bean class=&quot;org.springframework.http.converter.ByteArrayHttpMessageConverter&quot; /&gt;
+            &lt;bean class=&quot;org.springframework.http.converter.xml.SourceHttpMessageConverter&quot; /&gt;
+            &lt;bean class=&quot;org.springframework.http.converter.xml.XmlAwareFormHttpMessageConverter&quot; /&gt;
+            &lt;bean class=&quot;org.springframework.http.converter.StringHttpMessageConverter&quot; /&gt;
+            &lt;bean class=&quot;org.springframework.http.converter.json.MappingJacksonHttpMessageConverter&quot;&gt;
+                &lt;property name=&quot;supportedMediaTypes&quot;&gt;
+                    &lt;list&gt;
+                        &lt;value&gt;application/json;charset=UTF-8&lt;/value&gt;
+                    &lt;/list&gt;
+                &lt;/property&gt;
+            &lt;/bean&gt;&lt;!--这里配置了json转换器支持的媒体类型--&gt;
+        &lt;/list&gt;
+    &lt;/property&gt;
+&lt;/bean&gt;
+</code></pre>
+
+<pre><code>1.`ByteArrayHttpMessageConverter`: 负责读取二进制格式的数据和写出二进制格式的数据；
+2.`StringHttpMessageConverter`: 负责读取字符串格式的数据和写出二进制格式的数据；
+3.`ResourceHttpMessageConverter`: 负责读取资源文件和写出资源文件数据；
+4.`FormHttpMessageConverter`: 负责读取form提交的数据；
+5.`MappingJacksonHttpMessageConverter`: 负责读取和写入json格式的数据；
+6.`SouceHttpMessageConverter`： 负责读取和写入 xml 中；7.`javax.xml.transform.Source`：定义的数据；
+Jaxb2RootElementHttpMessageConverter: 负责读取和写入xml 标签格式的数据；
+8.`AtomFeedHttpMessageConverter`: 负责读取和写入Atom格式的数据；
+9.`RssChannelHttpMessageConverter`: 负责读取和写入RSS格式的数据；
+</code></pre>
+
+<p>项目里面我用到的只有json转换器，所以要导入关于json的包（maven）:</p>
+
+<pre><code class="language-xml"> &lt;dependency&gt;
+            &lt;groupId&gt;org.codehaus.jackson&lt;/groupId&gt;
+            &lt;artifactId&gt;jackson-core-asl&lt;/artifactId&gt;
+            &lt;version&gt;1.9.11&lt;/version&gt;
+        &lt;/dependency&gt;
+          &lt;dependency&gt;
+            &lt;groupId&gt;org.codehaus.jackson&lt;/groupId&gt;
+            &lt;artifactId&gt;jackson-mapper-asl&lt;/artifactId&gt;
+            &lt;version&gt;1.9.11&lt;/version&gt;
+        &lt;/dependency&gt;
+</code></pre>
+
+<h3 id="toc_11">bug集锦</h3>
+
+<h4 id="toc_12">1.415错误</h4>
+
+<pre><code>开始一直报（415 Unsupported media type）的错误是因为配置文件没有写对也没导入相应的包。
+</code></pre>
+
+<h4 id="toc_13">2.ajax带汉字参数传人后台乱码</h4>
+
+<pre><code>汉字在前台提交前用encodeURIComponent()函数编一下码，在后台用java.net.URLDecoder.decode(str,&quot;utf-8&quot;)解码
+
+在乱码方面，下篇文章将仔细针对乱码作出解释。
+</code></pre>
+
+
+</div>
+
+<br /><br />
+<hr />
+
+<div class="row clearfix">
+  <div class="large-6 columns">
+	<div class="text-left" style="padding:15px 0px;">
+		
+	        <a href="15062614477154.html"  title="Previous Post: java基础巩固笔记(4)-代理">&laquo; java基础巩固笔记(4)-代理</a>
+	    
+	</div>
+  </div>
+  <div class="large-6 columns">
+	<div class="text-right" style="padding:15px 0px;">
+		
+	        <a href="15062185158014.html" 
+	        title="Next Post: java基础巩固笔记(3)-类加载器">java基础巩固笔记(3)-类加载器 &raquo;</a>
+	    
+	</div>
+  </div>
+</div>
+
+<div class="row">
+<div style="padding:0px 0.93em;" class="share-comments">
+
+</div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		var currentURL = '15062194172218.html';
+		$('#side-nav a').each(function(){
+			if($(this).attr('href') == currentURL){
+				$(this).parent().addClass('active');
+			}
+		});
+	});
+</script>  
+</div></div>
+
+
+<div class="page-bottom">
+  <div class="row">
+  <hr />
+  <div class="small-9 columns">
+  <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+  <div class="small-3 columns">
+  <p class="copyright text-right"><a href="#header">TOP</a></p>
+  </div>
+   
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+    
+    
+    <script src="asset/js/foundation.min.js"></script>
+    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
+    <script>
+      $(document).foundation();
+
+     
+    </script>
+    
+
+
+  </body>
+</html>

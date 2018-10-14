@@ -1,0 +1,12 @@
+Runtime/
+install.lock
+Application/Common/Conf/db.php
+node_modules/
+package-lock.json
+.idea
+study_bishe/
+_MACOSX
+showdoc/
+.DS_Store
+
+Template/default_src/

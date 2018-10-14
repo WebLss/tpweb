@@ -1,0 +1,31 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><title>添加项目</title><bootstrapcss/><icheckcss/><css href="__PUBLIC__/static/editormd/css/editormd.min.css"/></head><body><form class="form-group" action="{:U('Admin/Project/edit')}" method="post"> <input type="hidden" name="aid" value="{$data['aid']}"><table class="table table-bordered table-striped table-hover table-condensed"><tr><th width="80px">所属分类</th><td> <select class="form-control modal-sm" name="cid"><foreach name="allCategory" item="v"><option value="{$v['cid']}" <if condition="$v['cid'] eq $data['cid']">selected='selected'</if> >{$v['_name']}</option></foreach></select></td></tr><tr><th>标题</th><td> <input class="form-control modal-sm" type="text" value="{$data['title']}" name="title"></td></tr><tr><th>作者</th><td> <input class="form-control modal-sm" type="text" name="author" value="{$Think.config.AUTHOR}"></td></tr><tr><th>加密连接</th><td> <input class="form-control modal-sm" type="text" name="nolock" value="{$data['nolock']}"></td></tr><tr><th>加密密码</th><td> <input class="form-control modal-sm" type="text" name="yeslock" value="{$data['yeslock']}"></td></tr><tr><th>关键词</th><td> <input class="form-control modal-sm" placeholder="多个关键词用顿号分隔" value="{:str_replace(',', '、', $data['keywords'])}" type="text" name="keywords"></td></tr><tr><th>描述</th><td> <textarea class="form-control modal-sm" name="description" rows="7" placeholder="可以不填，如不填；则截取文章内容前300字为描述">{$data['description']}</textarea></td></tr><tr><th>内容</th><td><div id="lss-content"> <textarea name="markdown">{$data['markdown']}</textarea></div></td></tr><tr><th>是否原创</th><td> <span class="inputword">是</span> <input class="icheck" type="radio" name="is_original" value="1" <if condition="$data['is_original'] eq 1">checked="checked"</if> > <span class="inputword">否</span> <input class="icheck" type="radio" name="is_original" value="0" <if condition="$data['is_original'] eq 0">checked="checked"</if> ></td></tr><tr><th>是否置顶</th><td> <span class="inputword">是</span> <input class="icheck" type="radio" name="is_top" value="1" <if condition="$data['is_top'] eq 1">checked="checked"</if> > <span class="inputword">否</span> <input class="icheck" type="radio" name="is_top" value="0" <if condition="$data['is_top'] eq 0">checked="checked"</if> ></td></tr><tr><th>是否显示</th><td> <span class="inputword">是</span> <input class="icheck" type="radio" name="is_show" value="1" <if condition="$data['is_show'] eq 1">checked="checked"</if> > <span class="inputword">否</span> <input class="icheck" type="radio" name="is_show" value="0" <if condition="$data['is_show'] eq 0">checked="checked"</if> ></td></tr><tr><th></th><td> <input class="btn btn-success" type="submit" value="发表"></td></tr></table></form><bootstrapjs/><js href="__PUBLIC__/static/editormd/editormd.min.js"/><icheckjs color="blue"/><script>
+    var testEditor;
+
+    $(function() {
+        // You can custom @link base url.
+        editormd.urls.atLinkBase = "https://github.com/";
+
+        testEditor = editormd("lss-content", {
+                width     : "100%",
+                height    : 720,
+                toc       : true,
+                //atLink    : false,    // disable @link
+                //emailLink : false,    // disable email address auto link
+                todoList  : true,
+                placeholder: '输入项目内容',
+                toolbarAutoFixed: false,
+                path      : '__PUBLIC__/static/editormd/lib/',
+                emoji: true,
+                toolbarIcons : ['undo', 'redo', 'bold', 'del', 'italic', 'quote', 'uppercase', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'list-ul', 'list-ol', 'hr', 'link', 'reference-link', 'image', 'code', 'code-block', 'table', 'emoji', 'html-entities', 'watch', 'preview', 'search', 'fullscreen'],
+                imageUpload: true,
+                imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                imageUploadURL : "{:U('Admin/Project/uploadImage')}",
+        });
+        $('.bjy-icheck').iCheck({
+            checkboxClass: "icheckbox_minimal-blue",
+            radioClass: "iradio_minimal-blue",
+            increaseArea: "20%"
+        });
+
+    });
+</script></body></html>

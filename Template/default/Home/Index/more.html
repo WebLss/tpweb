@@ -1,0 +1,10 @@
+<!DOCTYPE html><html><head><include file="Public/public_head" title="V猿知识库-" keywords="{$Think.config.WEB_KEYWORDS}" description="{$Think.config.WEB_DESCRIPTION}"/><link href="__HOME_CSS__/style.css" rel="stylesheet"><link href="__HOME_CSS__/school.css" rel="stylesheet"></head><body class="  pace-done" style=""><div class="pace  pace-inactive"><div class="pace-progress" data-progress-text="100%" data-progress="99" style="width: 100%;"><div class="pace-progress-inner"></div></div><div class="pace-activity"></div></div><div class="wrap-container"><div class="school_top"><h3>选择资源分类</h3></div><div class="school-area"><div class="wrap-school-list"><div class="school-item"><p class="school-list allschool"> <a href="{:U('Home/Index/git')}">查看所有资源</a></p></div></div><div class="school-item"><foreach name="procarts" item="v"><div class="item-title"><div class="item-title-txt">{$v.cname}</div></div><p class="school-list"><foreach name="v.child" item="s"> <a href="{:U('Home/Index/git/',array('cid'=>$s['cid']))}">{$s.cname}</a></foreach></p></foreach></div></div><div class="school-bottom"><p class="if-contact">如果找不到您所想要的知识点，可以向微圆投稿建议。</p><div class="apply-school"> <a target="_blank" href="#">投稿建议</a></div><p class="copyright"> Veeker Garden <a rel="nofollow" href="http://www.veekergdn.cn" target="_blank">veekergdn.cn</a>© 2017 Veeker版权所有 ICP证：{$Think.config.WEB_ICP_NUMBER}</p></div></div><include file="Public/public_login"/><script>
+/*百度统计代码*/
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?631792055f974af19205e0193b81fcb4";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script></body></html>

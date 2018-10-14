@@ -1,0 +1,19 @@
+{
+    "name": "veekerblog",
+    "description": "the veeker blog",
+    "type": "blog",
+    "keywords": ["veeker","JavaEE","blog"],
+    "homepage": "http://veekergdn.com",
+    "license": "Apache2",
+    "authors": [
+        {
+            "name": "xiaochuan",
+            "email": "1027820283@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0"
+    },
+    "minimum-stability": "dev"
+}
+

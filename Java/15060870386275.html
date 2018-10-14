@@ -1,0 +1,374 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    
+  java基础巩固笔记(1)-反射 - 
+  
+  </title>
+ <meta name="description" content="">
+ <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+    <script src="asset/highlightjs/highlight.pack.js"></script>
+    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+<div id="header">
+    <h1><a href="index.html"></a></h1>
+</div>
+
+</nav>
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; </span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+      <li><a href="index.html">Home</a></li>
+      
+        <li class="divider"></li>
+        <li><label>javaSE</label></li>
+
+          
+            <li><a title="java基础巩固笔记(4)-代理" href="15062614477154.html">java基础巩固笔记(4)-代理</a></li>
+          
+            <li><a title="java基础巩固笔记(3)-类加载器" href="15062185158014.html">java基础巩固笔记(3)-类加载器</a></li>
+          
+            <li><a title="java基础巩固笔记(2)-泛型" href="15060875600181.html">java基础巩固笔记(2)-泛型</a></li>
+          
+            <li><a title="java基础巩固笔记(1)-反射" href="15060870386275.html">java基础巩固笔记(1)-反射</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>javaWeb</label></li>
+
+          
+            <li><a title="javaweb入门笔记(1)-Tomcat" href="15060873277976.html">javaweb入门笔记(1)-Tomcat</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>springMVC</label></li>
+
+          
+            <li><a title="springmvc笔记（19）-GET请求乱码深入剖析" href="15066056563587.html">springmvc笔记（19）-GET请求乱码深入剖析</a></li>
+          
+            <li><a title="springmvc笔记(18)-json数据交互" href="15062194172218.html">springmvc笔记(18)-json数据交互</a></li>
+          
+
+      
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+        <section id="main-content" role="main" class="scroll-container">
+
+          <div class="row">
+            <div class="large-3 medium-3 columns">
+              <div class="hide-for-small">
+                <div class="sidebar">
+                <nav>
+                  <ul id="side-nav" class="side-nav">
+
+                    
+                      <li class="side-title"><span>javaSE</span></li>
+                        
+                          <li><a title="java基础巩固笔记(4)-代理" href="15062614477154.html">java基础巩固笔记(4)-代理</a></li>
+                        
+                          <li><a title="java基础巩固笔记(3)-类加载器" href="15062185158014.html">java基础巩固笔记(3)-类加载器</a></li>
+                        
+                          <li><a title="java基础巩固笔记(2)-泛型" href="15060875600181.html">java基础巩固笔记(2)-泛型</a></li>
+                        
+                          <li><a title="java基础巩固笔记(1)-反射" href="15060870386275.html">java基础巩固笔记(1)-反射</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>javaWeb</span></li>
+                        
+                          <li><a title="javaweb入门笔记(1)-Tomcat" href="15060873277976.html">javaweb入门笔记(1)-Tomcat</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>springMVC</span></li>
+                        
+                          <li><a title="springmvc笔记（19）-GET请求乱码深入剖析" href="15066056563587.html">springmvc笔记（19）-GET请求乱码深入剖析</a></li>
+                        
+                          <li><a title="springmvc笔记(18)-json数据交互" href="15062194172218.html">springmvc笔记(18)-json数据交互</a></li>
+                        
+
+                    
+                  </ul>
+                </nav>
+                </div>
+              </div>
+            </div>
+            <div class="large-9 medium-9 columns">
+
+ <div class="markdown-body">
+<h1>java基础巩固笔记(1)-反射</h1>
+
+<p>标签： java</p>
+
+<hr/>
+
+<p><strong>Contents</strong></p>
+
+<ul>
+<li><a href="#java%E5%9F%BA%E7%A1%80%E5%B7%A9%E5%9B%BA%E7%AC%94%E8%AE%B01-%E5%8F%8D%E5%B0%84">java基础巩固笔记(1)-反射</a>
+
+<ul>
+<li><a href="#%E5%8F%8D%E5%B0%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8">反射基本使用</a></li>
+<li><a href="#%E6%95%B0%E7%BB%84%E7%9A%84%E5%8F%8D%E5%B0%84">数组的反射</a></li>
+<li><a href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%8A%A0%E8%BD%BD">配置文件加载</a></li>
+<li><a href="#%E5%86%85%E7%9C%81instropector--javabean">内省(Instropector) &amp; JavaBean</a></li>
+</ul></li>
+</ul>
+
+<hr/>
+
+<p><strong>反射：将类的属性和方法映射成相应的类。</strong></p>
+
+<h2 id="toc_0">反射基本使用</h2>
+
+<p>获取Class类的三种方法:</p>
+
+<ul>
+<li>类名.class</li>
+<li>对象名.getClass()</li>
+<li>Class.forName(&quot;要加载的类名&quot;)</li>
+</ul>
+
+<p>根据API写就行了，大致流程就是:</p>
+
+<ul>
+<li>用上述三种方式之一获取特定类的<code>Class</code>类，即该类对应的字节码</li>
+<li>调用<code>Class</code>对象的<code>getConstructor(Class&lt;?&gt;... parameterTypes)</code>获取构造方法对象</li>
+<li>调用是构造方法类<code>Constructor</code>的<code>newInstance(Object... initargs)</code>方法新建对象</li>
+<li>调用<code>Class</code>对象的<code>getMethod(String name, Class&lt;?&gt;... parameterTypes)</code>获取方法对象</li>
+<li>调用方法对象类<code>Method</code>的<code>invoke(Object obj, Object... args)</code>方法，调用对象上相应方法</li>
+</ul>
+
+<p><em>用方法的参数类型唯一标识一个方法,依据：方法的重载</em></p>
+
+<h2 id="toc_1">数组的反射</h2>
+
+<p>下面这个例子主要说明几点：</p>
+
+<ul>
+<li>对于元素同类型的数组，同维数组，class一样</li>
+<li>不同维，class不同</li>
+<li>不同维的，父类都是Object,一样</li>
+<li>基本类型一维数组不能直接转换为Object[]</li>
+<li><code>java.util.Arrays</code>的<code>asList</code>方法API看看</li>
+</ul>
+
+<pre><code class="language-java">public class ReflectTest {
+    public static void main(String[] args) {
+        int [] a1 = new int[]{1,2,3};
+        int [] a2 = new int[5];
+        int [][] a3 = new int[2][3];
+        System.out.println(a1.getClass() == a2.getClass());//true
+        System.out.println(a1.getClass());//class [I
+        System.out.println(a3.getClass());//class [[I
+        System.out.println(a1.getClass().getSuperclass() == a3.getClass().getSuperclass());//true
+        System.out.println(a2.getClass().getSuperclass());//class java.lang.Object
+
+        //下句编译不通过：Error:(15, 42) java: 不可比较的类型: java.lang.Class&lt;capture#1, 共 ? extends int[]&gt;和java.lang.Class&lt;capture#2, 共 ? extends int[][]&gt;
+        //System.out.println(a1.getClass() == a3.getClass());
+
+        Object []b3 = a3;//通过
+        //下句编译不通过   Error:(17, 24) java: 不兼容的类型: int[]无法转换为java.lang.Object[]
+        //Object [] b1 = a1;
+
+        String s1 = &quot;abc&quot;;
+        System.out.println(Arrays.asList(a1));//[[I@1540e19d]
+        System.out.println(Arrays.asList(s1));//[abc]
+    }
+}
+</code></pre>
+
+<p>输出：</p>
+
+<pre><code>true
+class [I
+class [[I
+true
+class java.lang.Object
+[[I@1540e19d]
+[abc]
+</code></pre>
+
+<p>乱入：
+hashcode与内存泄露问题
+参考java api：</p>
+
+<blockquote>
+<ul>
+<li>hashcode一旦生成，不要变</li>
+<li>对象equals方法返回true,则hashcode要一致</li>
+<li>反之，equals方法返回false,hashcode不一定互异</li>
+</ul>
+</blockquote>
+
+<p>如果参与hashcode计算的成员变量中途发生变化，则后面remove时失败，造成内存泄露</p>
+
+<hr/>
+
+<h2 id="toc_2">配置文件加载</h2>
+
+<ul>
+<li>类加载器加载只读配置文件</li>
+</ul>
+
+<p><code>类名.class.getClassLoader().getResourceAsStream(str);</code></p>
+
+<ul>
+<li>类名.class.getResourceAsStream(str),实质还是调用类加载器。
+源码截取(java.lang包下的Class.java)：</li>
+</ul>
+
+<pre><code class="language-java"> public InputStream getResourceAsStream(String name) {
+    name = resolveName(name);
+    ClassLoader cl = getClassLoader0();
+    if (cl==null) {
+        // A system class.
+        return ClassLoader.getSystemResourceAsStream(name);
+    }
+    return cl.getResourceAsStream(name);
+}
+</code></pre>
+
+<p>关于路径str，写法有点讲究。</p>
+
+<ul>
+<li>不加斜杠，相对路径:
+<code>str = &quot;config.properties&quot;;</code></li>
+<li>加斜杠，从classpath的根路径找:
+<code>str = &quot;/org/iot/ui/config.properties&quot;;</code></li>
+</ul>
+
+<p><em>以前编译java代码时，有些<code>conf/</code>文件夹还要添加进依赖或者标记成source文件夹，里面明明都是xml文件，没Java源码。从这里，我现在知道了，是使用反射加载配置文件的缘故</em></p>
+
+<hr/>
+
+<h2 id="toc_3">内省(Introspector) &amp; JavaBean</h2>
+
+<p>JavaBean读取属性x的值的流程：变大写、补前缀、获取方法。</p>
+
+<pre><code>&quot;x&quot;--&gt;&quot;X&quot;--&gt;&quot;getX&quot;--&gt;&quot;MethodGetX&quot;
+</code></pre>
+
+<ul>
+<li>自己用内省操作</li>
+</ul>
+
+<p>我目前没用上，所以不贴代码了，只附上核心类</p>
+
+<p>简单实现：
+使用<code>java.beans.PropertyDescriptor</code>类</p>
+
+<p>麻烦实现:
+使用<code>java.beans.Introspector</code>类,遍历<code>getBeanInfo</code>方法的返回值</p>
+
+<p><strong>JavaBean必须有一个不带参数的构造函数</strong></p>
+
+<ul>
+<li><p>使用BeanUtils工具包</p>
+
+<ul>
+<li>字符串和整数转换(对比(PropertyUtils)</li>
+<li>属性级联操作</li>
+<li>操作map</li>
+</ul></li>
+</ul>
+
+
+</div>
+
+<br /><br />
+<hr />
+
+<div class="row clearfix">
+  <div class="large-6 columns">
+	<div class="text-left" style="padding:15px 0px;">
+		
+	        <a href="15060873277976.html"  title="Previous Post: javaweb入门笔记(1)-Tomcat">&laquo; javaweb入门笔记(1)-Tomcat</a>
+	    
+	</div>
+  </div>
+  <div class="large-6 columns">
+	<div class="text-right" style="padding:15px 0px;">
+		
+	</div>
+  </div>
+</div>
+
+<div class="row">
+<div style="padding:0px 0.93em;" class="share-comments">
+
+</div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		var currentURL = '15060870386275.html';
+		$('#side-nav a').each(function(){
+			if($(this).attr('href') == currentURL){
+				$(this).parent().addClass('active');
+			}
+		});
+	});
+</script>  
+</div></div>
+
+
+<div class="page-bottom">
+  <div class="row">
+  <hr />
+  <div class="small-9 columns">
+  <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+  <div class="small-3 columns">
+  <p class="copyright text-right"><a href="#header">TOP</a></p>
+  </div>
+   
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+    
+    
+    <script src="asset/js/foundation.min.js"></script>
+    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
+    <script>
+      $(document).foundation();
+
+     
+    </script>
+    
+
+
+  </body>
+</html>

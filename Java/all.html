@@ -1,0 +1,300 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+  
+  
+  
+  </title>
+ <meta name="description" content="">
+ <link href="atom.xml" rel="alternate" title="" type="application/atom+xml">
+    <link rel="stylesheet" href="asset/css/foundation.min.css" />
+    <link rel="stylesheet" href="asset/css/docs.css" />
+
+    <script src="asset/js/vendor/modernizr.js"></script>
+    <script src="asset/js/vendor/jquery.js"></script>
+    <script src="asset/highlightjs/highlight.pack.js"></script>
+    <link href="asset/highlightjs/styles/github.css" media="screen, projection" rel="stylesheet" type="text/css">
+    <script>hljs.initHighlightingOnLoad();</script>
+    
+  </head>
+  <body class="antialiased hide-extras">
+    
+    <div class="marketing off-canvas-wrap" data-offcanvas>
+      <div class="inner-wrap">
+
+
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+
+<div id="header">
+    <h1><a href="index.html"></a></h1>
+</div>
+
+</nav>
+        <nav class="tab-bar show-for-small">
+  <a href="javascript:void(0)" class="left-off-canvas-toggle menu-icon">
+    <span> &nbsp; </span>
+  </a>
+</nav>
+
+<aside class="left-off-canvas-menu">
+      <ul class="off-canvas-list">
+      <li><a href="index.html">Home</a></li>
+      
+        <li class="divider"></li>
+        <li><label>javaSE</label></li>
+
+          
+            <li><a title="java基础巩固笔记(4)-代理" href="15062614477154.html">java基础巩固笔记(4)-代理</a></li>
+          
+            <li><a title="java基础巩固笔记(3)-类加载器" href="15062185158014.html">java基础巩固笔记(3)-类加载器</a></li>
+          
+            <li><a title="java基础巩固笔记(2)-泛型" href="15060875600181.html">java基础巩固笔记(2)-泛型</a></li>
+          
+            <li><a title="java基础巩固笔记(1)-反射" href="15060870386275.html">java基础巩固笔记(1)-反射</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>javaWeb</label></li>
+
+          
+            <li><a title="javaweb入门笔记(1)-Tomcat" href="15060873277976.html">javaweb入门笔记(1)-Tomcat</a></li>
+          
+
+      
+        <li class="divider"></li>
+        <li><label>springMVC</label></li>
+
+          
+            <li><a title="springmvc笔记（19）-GET请求乱码深入剖析" href="15066056563587.html">springmvc笔记（19）-GET请求乱码深入剖析</a></li>
+          
+            <li><a title="springmvc笔记(18)-json数据交互" href="15062194172218.html">springmvc笔记(18)-json数据交互</a></li>
+          
+
+      
+      </ul>
+    </aside>
+
+<a class="exit-off-canvas" href="#"></a>
+
+        <section id="main-content" role="main" class="scroll-container">
+
+          <div class="row">
+            <div class="large-3 medium-3 columns">
+              <div class="hide-for-small">
+                <div class="sidebar">
+                <nav>
+                  <ul id="side-nav" class="side-nav">
+
+                    
+                      <li class="side-title"><span>javaSE</span></li>
+                        
+                          <li><a title="java基础巩固笔记(4)-代理" href="15062614477154.html">java基础巩固笔记(4)-代理</a></li>
+                        
+                          <li><a title="java基础巩固笔记(3)-类加载器" href="15062185158014.html">java基础巩固笔记(3)-类加载器</a></li>
+                        
+                          <li><a title="java基础巩固笔记(2)-泛型" href="15060875600181.html">java基础巩固笔记(2)-泛型</a></li>
+                        
+                          <li><a title="java基础巩固笔记(1)-反射" href="15060870386275.html">java基础巩固笔记(1)-反射</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>javaWeb</span></li>
+                        
+                          <li><a title="javaweb入门笔记(1)-Tomcat" href="15060873277976.html">javaweb入门笔记(1)-Tomcat</a></li>
+                        
+
+                    
+                      <li class="side-title"><span>springMVC</span></li>
+                        
+                          <li><a title="springmvc笔记（19）-GET请求乱码深入剖析" href="15066056563587.html">springmvc笔记（19）-GET请求乱码深入剖析</a></li>
+                        
+                          <li><a title="springmvc笔记(18)-json数据交互" href="15062194172218.html">springmvc笔记(18)-json数据交互</a></li>
+                        
+
+                    
+                  </ul>
+                </nav>
+                </div>
+              </div>
+            </div>
+            <div class="large-9 medium-9 columns">
+
+ 
+
+
+	
+		<div class="markdown-body">
+		<h1>springmvc笔记（19）-GET请求乱码深入剖析</h1>
+
+		<p><strong>引言</strong></p>
+
+<pre><code>在进行Web開始时。乱码是我们最常常遇到也是最主要的问题。有经验的程序员非常easy能解决，刚開始学习的人则easy被泥潭困住。
+并且非常多时候。我们即使攻克了乱码问题也是不明就里。往往云里雾里。
+事实上乱码问题非常easy，就是client和server使用了不一样的字符集导致的。
+也就是我们发送文件时用的字符编码和解析文件的编码不一致。  
+所以仅仅要搞清楚了我们的文件是怎么被编码和解码的解决乱码就非常easy了。
+分析乱码，我们从请求乱码和响应乱码来分析，请求乱码又须要依据GET和POST来单独分析
+</code></pre>
+
+<h2 id="toc_0">解决方案：</h2>
+
+<ul>
+<li><a href="#">spring中encodeURI(encodeURI())  &lt;=&gt;   URLDecode.decode(,&quot;UTF-8&quot;)</a></li>
+<li><a href="#">encodeURIComponent（&quot;中文&quot;） &lt;=&gt;  request.getParameter(key，&quot;utf-8&quot;)</a></li>
+<li><a href="#">encodeURIComponent（encodeURIComponent（&quot;中文&quot;））&lt;=&gt; URLDecode.decode(,&quot;UTF-8&quot;)</a></li>
+<li><a href="#">防止乱码请看下文</a></li>
+</ul>
+
+<h3 id="toc_1">JS获取url参数及url编码、解码</h3>
+
+<p>完整的URL由这几个部分构成：scheme://host:port/path?query#fragment ，各部分的取法如下：</p>
+
+<pre><code class="language-js">window.location.href：//获取完整url的方法：,即scheme://host:port/path?query#fragment
+window.location.protocol：//获取rul协议scheme
+window.location.host：//获取host
+window.location.port：//获取端口号
+window.location.pathname：//获取url路径
+window.location.search：//获取参数query部分，注意此处返回的是?query
+window.location.hash：//获取锚点，#fragment
+</code></pre>
+
+<p>在js中可以使用escape(), encodeURL(), encodeURIComponent()，三种方法都有一些不会被编码的符号：</p>
+
+<pre><code class="language-js">escape()：@ * / +
+encodeURL()：! @ # $&amp; * ( ) = : / ; ? + &#39;
+encodeURIComponent()：! * ( ) &#39;
+</code></pre>
+
+<pre><code>     在java端可以使用URLDecoder.decode(“中文”, &quot;UTF-8&quot;);来进行解码但是由于使  request.getParameter（）
+     来获取参数时已经对编码进行了一次解码，所以一般情况下只要在js中使用encodeURIComponent（&quot;中文&quot;）;
+     在java端直接使用request.getParameter（）来获取即可返回中文。
+</code></pre>
+
+<pre><code class="language-js">     如果你想在java端使用URLDecoder.decode(“中文”, &quot;UTF-8&quot;);来解码也可以在js中进行二次编码，即：
+encodeURIComponent（encodeURIComponent（&quot;中文&quot;））;
+     如果不进行二次编码的话，在java端通过decode方法取的会是乱码。
+</code></pre>
+
+<h3 id="toc_2">get请求url中带有中文参数，有三种方式进行处理防止中文乱码（更深层剖析）</h3>
+
+<pre><code>1、如果使用tomcat作为服务器，那么修改tomcat配置文件conf/server.xml中，
+ 在&lt;Connector port=&quot;8082&quot; protocol=&quot;HTTP/1.1&quot;  中加入URIEncoding=&quot;utf-8&quot;的编码集
+
+2、前台需要对中文参数进行编码，调用js方法encodeURI（url），将url编码，然后请求。后台接受时，
+需处理String str = new String(request.getParameter(&quot;param&quot;).getBytes(&quot;iso8859-1&quot;),&quot;UTF-8&quot;);
+原因：tomcat不设置编码时，默认是iso8859-1，即tomcat默认会以iso8859-1编码接收get参数。 
+以上操作是将参数以iso8859-1编码转化为字节数组，然后再以UTF-8将字节数组转化为字符串。
+另外需注意在框架的使用中： 
+request.setCharacterEncoding(encoding);只对post请求有效。
+而且，spring的CharacterEncodingFilter也只是做了request(和response）.setCharacterEncoding(encoding);的操作。
+所以spring的filter配置不作用于get参数接收。
+
+3、解决get请求，后台接受中文参数乱码处理的方法（搜索功能带参数）
+ （1）前台获取数据，在js中进行编码处理
+window.location.href=url+&quot;?&quot;+encodeURI(encodeURI(&quot;中文&quot;))
+  encodeURI函数采用utf-8进行编码，而在服务器的进行解码时候，默认都不是以uft-8进行解码，所以就会出现乱码。
+  两次encodeURI,第一次编码得到的是UTF-8形式的URL，第二次编码得到的依然是UTF-8形式的URL，
+  但是在效果上相当于首先进行了一次UTF-8编码(此时已经全部转换为ASCII字符)，再进行了一次iso-8859-1编码，
+  因为对英文字符来说UTF-8编码和ISO- 8859-1编码的效果相同。
+  （2）后台解码处理
+在后台接收参数时候，首先通过request.getParameter()自动进行第一次解码(可能是 gb2312,gbk,utf-8,iso-8859-1
+等字符集,对结果无影响)得到ascii字符，
+然后再使用UTF-8进行第二次解码，通常使用 java.net.URLDecoder(&quot;&quot;,&quot;UTF-8&quot;)方法。
+即：roleName = java.net.URLDecoder.decode(getRequest().getParameter(&quot;roleName&quot;),&quot;UTF-8&quot;);
+</code></pre>
+
+<h3 id="toc_3">总结：</h3>
+
+<p>**
+   这种两次encodeURI方式不用去知道服务器的解码方式，也可以得到正确的数据。
+   get请求建议尽量不带中文参数，如果使用建议使用两次encodeURI进行编码
+**</p>
+
+<ul>
+<li><a href="#">深入分析支持两次encodeURI的原因</a></li>
+</ul>
+
+<pre><code>两次编码两次解码的过程为：
+
+UTF-8编码-&gt;UTF-8(iso-8859-1)编码-&gt;iso-8859-1解码-&gt;UTF-8解码，编码和解码的过程是对称的，所以不会出现乱码。
+
+encodeURL函数主要是来对URI来做转码，它默认是采用的UTF-8的编码.
+. UTF-8编码的格式:一个汉字来三个字节构成，每一个字节会转换成16进制的编码，同时添加上%号.
+
+假设页面端输入的中文是一个“中”，按照下面步骤进行解码
+
+1.第一次encodeURI，按照utf-8方式获取字节数组变成[-28,-72-83]，对字节码数组进行遍历，
+把每个字节转化成对应的16进制数，这样就变成了[E4,B8,AD],最后变成[�,�,�]  此时已经没有了多字节字符，全部是单字节字符。
+
+2、第二次encodeURI，进行编码，会把%看成一个转义字符，并不编码%以后字符，会把%编码成%.
+把数组最后变成[�,�,�]然后就把处理后的数据[�,�,�]发往服务器端，
+当应用服务器调用getParameter方法，getParameter方法会去向应用服务器请求参数
+应用服务器最初获得的就是发送来的[�,�,�]，应用服务器会对这个数据进行URLdecode操作，应用服务器进行解码的这一次，
+不管是按照UTF-8，还是GBK，还是ISO-8859，,都能得到[�,�,�]，因为都会把%解析成%.并把这个值返回给getParameter方法
+
+3、再用UTF-8解码一次，就得到&quot;中&quot;了。
+</code></pre>
+
+
+		</div>
+	
+
+ 
+	
+
+ 
+	
+
+ 
+	
+
+ 
+	
+
+ 
+	
+
+ 
+	
+
+  
+  
+</div></div>
+
+
+<div class="page-bottom">
+  <div class="row">
+  <hr />
+  <div class="small-9 columns">
+  <p class="copyright">Copyright &copy; 2015
+Powered by <a target="_blank" href="http://www.mweb.im">MWeb</a>,&nbsp; 
+Theme used <a target="_blank" href="http://github.com">GitHub CSS</a>.</p>
+  </div>
+  <div class="small-3 columns">
+  <p class="copyright text-right"><a href="#header">TOP</a></p>
+  </div>
+   
+  </div>
+</div>
+
+        </section>
+      </div>
+    </div>
+    
+    
+    <script src="asset/js/foundation.min.js"></script>
+    <script src="asset/js/foundation/foundation.offcanvas.js"></script>
+    <script>
+      $(document).foundation();
+
+     
+    </script>
+    
+
+
+  </body>
+</html>
